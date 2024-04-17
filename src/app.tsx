@@ -43,6 +43,7 @@ export async function getInitialState(): Promise<{
     return {
       // @ts-ignore
       fetchUserInfo,
+      // @ts-ignore
       currentUser,
       settings: defaultSettings as Partial<LayoutSettings>,
     };
