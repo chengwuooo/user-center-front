@@ -16,7 +16,7 @@ const request = extend({
 
   credentials: 'include', // 默认请求是否带上cookie
   // prefix: process.env.NODE_ENV === 'production' ? 'https://user-front.code.cn' : undefined
-  prefix: process.env.NODE_ENV === 'production' ? 'http://47.109.196.49:8080' : undefined
+  prefix: process.env.NODE_ENV === 'production' ? 'http://47.109.196.49' : undefined
 
   // requestType: 'form',
 });
