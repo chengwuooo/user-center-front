@@ -39,7 +39,6 @@ export async function getInitialState(): Promise<{
   const { location } = history;
   if (!NO_NEED_LOGIN_WHITE_LIST.includes(location.pathname)) {
     const currentUser = await fetchUserInfo();
-
     return {
       // @ts-ignore
       fetchUserInfo,
@@ -72,17 +71,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      // //如果是白名单页面，不执行
-      // if(!NO_NEED_LOGIN_WHITE_LIST.includes(location.pathname)) return;
 
-      // //弹窗输出登录信息
-      // alert('当前用户信息：' + JSON.stringify(initialState?.currentUser))
-
-      // 如果已经登录，重定向到首页
-      // if (initialState?.currentUser && (location.pathname === loginPath || location.pathname === Register)) {
-      //   history.push('/');
-      // }
-      // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && (location.pathname !== loginPath && location.pathname !== RegisterPath)) {
         history.push(loginPath);
       }
