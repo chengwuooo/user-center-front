@@ -3,21 +3,16 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import {extend} from 'umi-request';
-import {message} from 'antd';
-import {stringify} from 'querystring';
+import {message} from "antd";
 import {history} from "@@/core/history";
-
-
+import {stringify} from "querystring";
 
 /**
  * 配置request请求时的默认参数
  */
 const request = extend({
-
   credentials: 'include', // 默认请求是否带上cookie
-  // prefix: process.env.NODE_ENV === 'production' ? 'https://user-front.code.cn' : undefined
-  prefix: process.env.NODE_ENV === 'production' ? 'http://47.109.196.49:8080' : undefined
-
+  prefix: process.env.NODE_ENV === 'production' ? 'http://47.109.196.49' : 'http://47.109.196.49'
   // requestType: 'form',
 });
 
@@ -25,10 +20,8 @@ const request = extend({
  * 所以请求拦截器
  */
 request.interceptors.request.use((url, options): any => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`Request is being made to URL: ${url}`);
-  }
-  console.log(`Request is being made to URL: ${url}`);
+  console.log(`do request url = ${url}`)
+
   return {
     url,
     options: {
@@ -41,16 +34,8 @@ request.interceptors.request.use((url, options): any => {
 /**
  * 所有响应拦截器
  */
-request.interceptors.response.use(async (response): Promise<any> => {
+request.interceptors.response.use(async (response, options): Promise<any> => {
   const res = await response.clone().json();
-  if (process.env.NODE_ENV === 'development') {
-    console.log("res:::"+res);
-    console.log("JSON.stringify(res):::"+JSON.stringify(res));
-    console.log("res.code:::"+res.code);
-    console.log("response:::"+response);
-    console.log("res.data:::"+res.data);
-  }
-
   if (res.code === 0) {
     return res.data;
   }
@@ -63,7 +48,7 @@ request.interceptors.response.use(async (response): Promise<any> => {
       }),
     });
   } else {
-    message.error(res.description);
+    message.error(res.description)
   }
   return res.data;
 });
