@@ -189,20 +189,6 @@ const Register: React.FC = () => {
                   }),
                 ]}
               />
-              <ProFormText
-                name="planetCode"
-                fieldProps={{
-                  size: 'large',
-                  prefix: <UserOutlined/>,
-                }}
-                placeholder={'请输入注册激活码:'}
-                rules={[
-                  {
-                    required: true,
-                    message: '注册激活码是必填项！',
-                  },
-                ]}
-              />
             </>
           )}
 

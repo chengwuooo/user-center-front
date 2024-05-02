@@ -25,12 +25,6 @@ const columns: ProColumns<API.CurrentUser>[] = [
     width: 48,
   },
   {
-    title: '激活ID',
-    dataIndex: 'planetCode',
-    copyable: true,
-    width: 48,
-  },
-  {
     title: '用户账号',
     dataIndex: 'userAccount',
     copyable: true,
